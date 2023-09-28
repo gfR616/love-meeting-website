@@ -27,7 +27,7 @@ const users = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471816",
-        name: "Кокс",
+        name: "Кортни Кокс",
         profession: professions.doctor,
         qualities: [qualities.buller, qualities.handsome, qualities.alcoholic],
         completedMeetings: 15,
@@ -75,7 +75,7 @@ const users = [
         name: "Говард Воловиц",
         profession: professions.engineer,
         qualities: [qualities.strange, qualities.tedious],
-        completedMeetings: 72,
+        completedMeetings: 4,
         rate: 3.5,
         bookmark: false
     },
@@ -120,8 +120,8 @@ const users = [
         name: "Брэд Питт",
         profession: professions.actor,
         qualities: [qualities.handsome],
-        completedMeetings: 434,
-        rate: 5,
+        completedMeetings: 4344,
+        rate: 3,
         bookmark: false
     },
 ]
