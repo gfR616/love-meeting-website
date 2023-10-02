@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import api from '../api'
 
-
-
 const Users = () => {
 
   const [users, setUsers] = useState(api.users.fetchAll())
@@ -11,7 +9,7 @@ const Users = () => {
     setUsers(users.filter(user => user._id !== userId))
   }
 
-  const renderPhrase = (number) => {
+  const searchStatus = (number) => {
     if (number > 4 || number === 1) {
       return <h2><span class="badge text-bg-primary">{number} человек тусанет с тобой сегодня</span></h2>
     } else if (number <= 4 && number > 1) {
@@ -31,6 +29,7 @@ const Users = () => {
             <th scope="col">Профессия</th>
             <th scope="col">Колличество встреч</th>
             <th scope="col">Оценка</th>
+            <th scope="col">Избранное</th>
             <th />
           </tr>
         </thead>
@@ -50,6 +49,7 @@ const Users = () => {
               <td>{user.profession.name}</td>
               <td>{user.completedMeetings}</td>
               <td>{user.rate}</td>
+              <td className="bi bi-star">{user.bookmark}</td>
               <td><button
                 className="btn btn-danger"
                 onClick={() => handleDelete(user._id)}
@@ -63,7 +63,7 @@ const Users = () => {
 
   return (
     <>
-      {renderPhrase(users.length)}
+      {searchStatus(users.length)}
       {table}
     </>
   )
