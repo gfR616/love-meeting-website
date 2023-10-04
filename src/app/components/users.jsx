@@ -1,21 +1,42 @@
-import React, { useState } from "react";
-import { paginate } from "../utils/paginate";
-import User from "./user"
-import Pagination from "./pagination";
+import React, { useState, useEffect } from 'react'
+import { paginate } from '../utils/paginate'
+import User from './user'
+import Pagination from './pagination'
+import PropTypes from 'prop-types'
+import GroupList from './groupList'
+import api from '../api'
 
 const Users = ({ users, ...rest }) => {
   const count = users.length
   const pageSize = 4
+
   const [currentPage, setCurrentPage] = useState(1)
+  const [professions, setProfession] = useState()
+  const [selctedProf, setSelectedProf] = useState()
+
+  useEffect(() => {
+    api.professions.fetchAll().then((data) => setProfession(data))
+  }, [])
+
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
 
-  const userCrop = paginate(users, currentPage, pageSize)
+  const handleProfessionSelect = item => {
+    setSelectedProf(item)
+  }
 
+  const userCrop = paginate(users, currentPage, pageSize)
 
   return (
     <>
+      {professions && (
+        <GroupList
+          items={professions}
+          onItemSelect={handleProfessionSelect}
+          selectedItem={selctedProf}
+        />
+      )}
       {count > 0 && (
         <table className="table">
           <thead>
@@ -31,7 +52,7 @@ const Users = ({ users, ...rest }) => {
           </thead>
           <tbody>
             {userCrop.map((user) => (
-              <User key={user._id} {...rest} {...user} key={user._id} />
+              <User key={user._id} {...rest} {...user} />
             ))}
           </tbody>
         </table>
@@ -44,6 +65,10 @@ const Users = ({ users, ...rest }) => {
       />
     </>
   )
+}
+
+Users.propTypes = {
+  users: PropTypes.array.isRequired,
 }
 
 export default Users
