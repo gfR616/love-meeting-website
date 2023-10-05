@@ -6,16 +6,17 @@ import PropTypes from 'prop-types'
 import GroupList from './groupList'
 import api from '../api'
 
-const Users = ({ users, ...rest }) => {
-  const count = users.length
+const Users = ({ users: allUsers, ...rest }) => {
+  const count = allUsers.length
   const pageSize = 4
 
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfession] = useState()
-  const [selctedProf, setSelectedProf] = useState()
+  const [selectedProf, setSelectedProf] = useState()
 
   useEffect(() => {
-    api.professions.fetchAll().then((data) => setProfession(data))
+    api.professions.fetchAll().then((data) =>
+      setProfession(data))
   }, [])
 
   const handlePageChange = (pageIndex) => {
@@ -26,16 +27,25 @@ const Users = ({ users, ...rest }) => {
     setSelectedProf(item)
   }
 
-  const userCrop = paginate(users, currentPage, pageSize)
+  const filteredUsers = selectedProf
+    ? allUsers.filter((user) => user.profession === selectedProf)
+    : allUsers
+
+  const userCrop = paginate(filteredUsers, currentPage, pageSize)
+
+  const clearFilter = () => { setSelectedProf() }
 
   return (
     <>
       {professions && (
-        <GroupList
-          items={professions}
-          onItemSelect={handleProfessionSelect}
-          selectedItem={selctedProf}
-        />
+        <>
+          <GroupList
+            items={professions}
+            onItemSelect={handleProfessionSelect}
+            selectedItem={selectedProf}
+          />
+          <button className='btn btn-secondary mt-2' onClick={clearFilter}>очистить</button>
+        </>
       )}
       {count > 0 && (
         <table className="table">
