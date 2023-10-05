@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 export const professionsObject = {
+=======
+export const professions = {
+>>>>>>> parent of ee1650f (Api update)
   doctor: { _id: '67rdca3eeb7f6fgeed471818', name: 'Доктор' },
   waiter: { _id: '67rdca3eeb7f6fgeed471820', name: 'Официант' },
   physics: { _id: '67rdca3eeb7f6fgeed471814', name: 'Физик' },
@@ -6,6 +10,7 @@ export const professionsObject = {
   actor: { _id: '67rdca3eeb7f6fgeed471824', name: 'Актер' },
   cook: { _id: '67rdca3eeb7f6fgeed471829', name: 'Повар' },
 }
+<<<<<<< HEAD
 export const professions = [
   { _id: '67rdca3eeb7f6fgeed471818', name: 'Доктор' },
   { _id: '67rdca3eeb7f6fgeed471820', name: 'Официант' },
@@ -14,6 +19,9 @@ export const professions = [
   { _id: '67rdca3eeb7f6fgeed471824', name: 'Актер' },
   { _id: '67rdca3eeb7f6fgeed471829', name: 'Повар' },
 ]
+=======
+
+>>>>>>> parent of ee1650f (Api update)
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(function () {

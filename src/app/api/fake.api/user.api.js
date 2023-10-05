@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { professionsObject as professions } from './professions.api'
+=======
+import { professions } from './professions.api.js'
+
+>>>>>>> parent of ee1650f (Api update)
 const qualities = {
   tedious: {
     _id: '67rdca3eeb7f6fgeed471198',
@@ -10,11 +15,15 @@ const qualities = {
     name: 'Странный',
     color: 'secondary',
   },
+<<<<<<< HEAD
   buller: {
     _id: '67rdca3eeb7f6fgeed4711012',
     name: 'Троль',
     color: 'success',
   },
+=======
+  buller: { _id: '67rdca3eeb7f6fgeed4711012', name: 'Троль', color: 'success' },
+>>>>>>> parent of ee1650f (Api update)
   alcoholic: {
     _id: '67rdca3eeb7f6fgeed471101',
     name: 'Алкоголик',
@@ -44,7 +53,11 @@ const users = [
   },
   {
     _id: '67rdca3eeb7f6fgeed471816',
+<<<<<<< HEAD
     name: 'Кокс',
+=======
+    name: 'Кортни Кокс',
+>>>>>>> parent of ee1650f (Api update)
     profession: professions.doctor,
     qualities: [qualities.buller, qualities.handsome, qualities.alcoholic],
     completedMeetings: 15,
@@ -92,7 +105,11 @@ const users = [
     name: 'Говард Воловиц',
     profession: professions.engineer,
     qualities: [qualities.strange, qualities.tedious],
+<<<<<<< HEAD
     completedMeetings: 72,
+=======
+    completedMeetings: 4,
+>>>>>>> parent of ee1650f (Api update)
     rate: 3.5,
     bookmark: false,
   },
@@ -137,6 +154,7 @@ const users = [
     name: 'Брэд Питт',
     profession: professions.actor,
     qualities: [qualities.handsome],
+<<<<<<< HEAD
     completedMeetings: 434,
     rate: 5,
     bookmark: false,
@@ -152,4 +170,13 @@ const fetchAll = () =>
 
 export default {
   fetchAll,
+=======
+    completedMeetings: 4344,
+    rate: 3,
+    bookmark: false,
+  },
+]
+export function fetchAll() {
+  return users
+>>>>>>> parent of ee1650f (Api update)
 }
