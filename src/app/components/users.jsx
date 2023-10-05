@@ -14,39 +14,60 @@ const Users = ({ users: allUsers, ...rest }) => {
 
   const pageSize = 4
 
-  useEffect(() => { setCurrentPage(1) }, [selectedProf])
+  useEffect(() => {
+    api.professions.fetchAll().then((data) => setProfession(data))
+  }, [])
 
   useEffect(() => {
-    api.professions.fetchAll().then((data) =>
-      setProfession(data))
-  }, [])
+    setCurrentPage(1)
+  }, [selectedProf])
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
 
-  const handleProfessionSelect = item => {
+  const handleProfessionSelect = (item) => {
     setSelectedProf(item)
   }
 
   const filteredUsers = selectedProf
-    ? allUsers.filter((user) => user.profession === selectedProf)
+    ? allUsers.filter(
+      (user) =>
+        JSON.stringify(user.profession) === JSON.stringify(selectedProf),
+    )
     : allUsers
 
   const count = filteredUsers.length
   const userCrop = paginate(filteredUsers, currentPage, pageSize)
 
-  const clearFilter = () => { setSelectedProf() }
+  const clearFilter = () => {
+    setSelectedProf()
+  }
+
+  useEffect(() => {
+    if (
+      currentPage > Math.ceil(filteredUsers.length / pageSize) &&
+      currentPage > 1
+    ) {
+      setCurrentPage(currentPage - 1)
+    }
+  }, [allUsers])
 
   return (
-    <div className='d-flex'>
+    <div className="d-flex">
       {professions && (
         <div className="d-flex flex-column flex-shrink-0 p-3">
-          <GroupList items={professions} onItemSelect={handleProfessionSelect} selectedItem={selectedProf} />
-          <button className='btn btn-secondary mt-2' onClick={clearFilter}>очистить</button>
+          <GroupList
+            items={professions}
+            onItemSelect={handleProfessionSelect}
+            selectedItem={selectedProf}
+          />
+          <button className="btn btn-secondary mt-2" onClick={clearFilter}>
+            очистить
+          </button>
         </div>
       )}
-      <div className='d-flex flex-column'>
+      <div className="d-flex flex-column">
         <SearchStatus length={count} />
         {count > 0 && (
           <table className="table">
@@ -69,7 +90,12 @@ const Users = ({ users: allUsers, ...rest }) => {
           </table>
         )}
         <div className="d-flex justify-content-center">
-          <Pagination itemsCount={count} pageSize={pageSize} onPageChange={handlePageChange} currentPage={currentPage} />
+          <Pagination
+            itemsCount={count}
+            pageSize={pageSize}
+            onPageChange={handlePageChange}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>
@@ -77,7 +103,7 @@ const Users = ({ users: allUsers, ...rest }) => {
 }
 
 Users.propTypes = {
-  users: PropTypes.array.isRequired,
+  users: PropTypes.array,
 }
 
 export default Users
