@@ -48,14 +48,15 @@ const GroupList = ({
 GroupList.defaultProps = {
   valueProperty: '_id',
   contentProperty: 'name',
+  selectedItem: [],
 }
 
 GroupList.propTypes = {
-  items: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
   valueProperty: PropTypes.string.isRequired,
   contentProperty: PropTypes.string.isRequired,
   onItemSelect: PropTypes.func.isRequired,
-  selectedItem: PropTypes.object.isRequired,
+  selectedItem: PropTypes.array.isRequired,
 }
 
 export default GroupList

@@ -30,25 +30,22 @@ const Users = ({ users: allUsers, ...rest }) => {
     setSelectedProf(item)
   }
 
-  const filteredUsers = selectedProf
+  const filteredUsers = allUsers && selectedProf
     ? allUsers.filter(
       (user) =>
         JSON.stringify(user.profession) === JSON.stringify(selectedProf),
     )
     : allUsers
 
-  const count = filteredUsers.length
-  const userCrop = paginate(filteredUsers, currentPage, pageSize)
+  const count = filteredUsers ? filteredUsers.length : 0
+  const userCrop = filteredUsers ? paginate(filteredUsers, currentPage, pageSize) : []
 
   const clearFilter = () => {
     setSelectedProf()
   }
 
   useEffect(() => {
-    if (
-      currentPage > Math.ceil(filteredUsers.length / pageSize) &&
-      currentPage > 1
-    ) {
+    if (filteredUsers && currentPage > Math.ceil(filteredUsers.length / pageSize) && currentPage > 1) {
       setCurrentPage(currentPage - 1)
     }
   }, [allUsers])
