@@ -4,7 +4,7 @@ import React from 'react'
 const NavBar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="#">
             Сайт знакомств
@@ -13,7 +13,7 @@ const NavBar = () => {
             <div className="navbar-nav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="#">
+                  <Link className="nav-link active" aria-current="page" to="/">
                     Главная
                   </Link>
                 </li>
@@ -23,7 +23,7 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link active" to="#">
+                  <Link className="nav-link active" to="/users">
                     Пользователи
                   </Link>
                 </li>
