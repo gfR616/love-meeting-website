@@ -6,7 +6,7 @@ const GroupList = ({
   valueProperty,
   contentProperty,
   onItemSelect,
-  selectedItem,
+  selectedItem
 }) => {
   if (!Array.isArray(items)) {
     return (
@@ -48,7 +48,7 @@ const GroupList = ({
 GroupList.defaultProps = {
   valueProperty: '_id',
   contentProperty: 'name',
-  selectedItem: [],
+  selectedItem: []
 }
 
 GroupList.propTypes = {
@@ -56,7 +56,7 @@ GroupList.propTypes = {
   valueProperty: PropTypes.string.isRequired,
   contentProperty: PropTypes.string.isRequired,
   onItemSelect: PropTypes.func.isRequired,
-  selectedItem: PropTypes.array.isRequired,
+  selectedItem: PropTypes.array.isRequired
 }
 
 export default GroupList
