@@ -7,6 +7,7 @@ import api from '../api'
 import SearchStatus from './searchStatus'
 import UserTable from './usersTable'
 import _ from 'lodash'
+import NavBar from './navigation/navBar'
 
 const Users = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -31,7 +32,7 @@ const Users = () => {
           return { ...user, bookmark: !user.bookmark }
         }
         return user
-      }),
+      })
     )
   }
 
@@ -55,69 +56,79 @@ const Users = () => {
     setSortBy(item)
   }
 
-  const filteredUsers = users && selectedProf
-    ? users.filter(
-      (user) =>
-        JSON.stringify(user.profession) === JSON.stringify(selectedProf),
-    )
-    : users
+  const filteredUsers =
+    users && selectedProf
+      ? users.filter(
+          (user) =>
+            JSON.stringify(user.profession) === JSON.stringify(selectedProf)
+        )
+      : users
 
   const count = filteredUsers ? filteredUsers.length : 0
   const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order])
-  const userCrop = sortedUsers ? paginate(sortedUsers, currentPage, pageSize) : []
+  const userCrop = sortedUsers
+    ? paginate(sortedUsers, currentPage, pageSize)
+    : []
 
   const clearFilter = () => {
     setSelectedProf()
   }
 
   useEffect(() => {
-    if (filteredUsers && currentPage > Math.ceil(filteredUsers.length / pageSize) && currentPage > 1) {
+    if (
+      filteredUsers &&
+      currentPage > Math.ceil(filteredUsers.length / pageSize) &&
+      currentPage > 1
+    ) {
       setCurrentPage(currentPage - 1)
     }
   }, [users])
   if (users) {
     return (
-      <div className="d-flex">
-        {professions && (
-          <div className="d-flex flex-column flex-shrink-0 p-3">
-            <GroupList
-              items={professions}
-              onItemSelect={handleProfessionSelect}
-              selectedItem={selectedProf}
-            />
-            <button className="btn btn-secondary mt-2" onClick={clearFilter}>
-              очистить
-            </button>
-          </div>
-        )}
-        <div className="d-flex flex-column">
-          <SearchStatus length={count} />
-          {count > 0 && (
-            <UserTable
-              users={userCrop}
-              selectedSort={sortBy}
-              onSort={handleSort}
-              onDelete={handleDelete}
-              onToggleBookmark={handleBookmark}
-            />
+      <>
+        <NavBar />
+        <div className="d-flex">
+          {professions && (
+            <div className="d-flex flex-column flex-shrink-0 p-3">
+              <GroupList
+                items={professions}
+                onItemSelect={handleProfessionSelect}
+                selectedItem={selectedProf}
+              />
+              <button className="btn btn-secondary mt-2" onClick={clearFilter}>
+                очистить
+              </button>
+            </div>
           )}
-          <div className="d-flex justify-content-center">
-            <Pagination
-              itemsCount={count}
-              pageSize={pageSize}
-              onPageChange={handlePageChange}
-              currentPage={currentPage}
-            />
+          <div className="d-flex flex-column">
+            <SearchStatus length={count} />
+            {count > 0 && (
+              <UserTable
+                users={userCrop}
+                selectedSort={sortBy}
+                onSort={handleSort}
+                onDelete={handleDelete}
+                onToggleBookmark={handleBookmark}
+              />
+            )}
+            <div className="d-flex justify-content-center">
+              <Pagination
+                itemsCount={count}
+                pageSize={pageSize}
+                onPageChange={handlePageChange}
+                currentPage={currentPage}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )
   }
   return 'Loading...'
 }
 
 Users.propTypes = {
-  users: PropTypes.array,
+  users: PropTypes.array
 }
 
 export default Users
