@@ -7,6 +7,7 @@ import api from '../api'
 import SearchStatus from './searchStatus'
 import UserTable from './usersTable'
 import _ from 'lodash'
+import NavBar from './navigation/navBar'
 
 const Users = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -85,6 +86,7 @@ const Users = () => {
   if (users) {
     return (
       <>
+        <NavBar />
         <div className="d-flex">
           {professions && (
             <div className="d-flex flex-column flex-shrink-0 p-3">
