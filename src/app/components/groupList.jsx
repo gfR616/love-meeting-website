@@ -44,19 +44,16 @@ const GroupList = ({
     </ul>
   )
 }
-
 GroupList.defaultProps = {
   valueProperty: '_id',
-  contentProperty: 'name',
-  selectedItem: []
+  contentProperty: 'name'
 }
-
 GroupList.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   valueProperty: PropTypes.string.isRequired,
   contentProperty: PropTypes.string.isRequired,
-  onItemSelect: PropTypes.func.isRequired,
-  selectedItem: PropTypes.array.isRequired
+  onItemSelect: PropTypes.func,
+  selectedItem: PropTypes.object
 }
 
 export default GroupList

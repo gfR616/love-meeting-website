@@ -6,7 +6,7 @@ const NavBar = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             Сайт знакомств
           </Link>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
