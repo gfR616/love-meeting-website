@@ -5,6 +5,7 @@ import { validator } from '../../utils/validator'
 const Login = () => {
   const [data, setData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
+  const isValid = Object.keys(errors).length === 0
 
   const handleChange = ({ target }) => {
     setData((prevState) => ({
@@ -55,25 +56,38 @@ const Login = () => {
     console.log(data)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Электронная почта"
-        type="text"
-        name="email"
-        value={data.email}
-        onChange={handleChange}
-        error={errors.email}
-      />
-      <TextField
-        label="Пароль"
-        type="password"
-        name="password"
-        value={data.password}
-        onChange={handleChange}
-        error={errors.password}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-4 offset-md-4 shadow p-4 mx-auto">
+          <h3 className="mb-4">Вход</h3>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label="Электронная почта"
+              type="text"
+              name="email"
+              value={data.email}
+              onChange={handleChange}
+              error={errors.email}
+            />
+            <TextField
+              label="Пароль"
+              type="password"
+              name="password"
+              value={data.password}
+              onChange={handleChange}
+              error={errors.password}
+            />
+            <button
+              type="submit"
+              disabled={!isValid}
+              className="btn btn-primary w-100 mx-auto mt-3"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   )
 }
 
