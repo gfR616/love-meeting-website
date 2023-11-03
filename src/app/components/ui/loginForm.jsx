@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import TextField from '../textField'
 import { validator } from '../../utils/validator'
+import TextField from '../common/form/textField'
 
-const Login = () => {
+const LoginForm = () => {
   const [data, setData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
   const isValid = Object.keys(errors).length === 0
@@ -55,6 +55,7 @@ const Login = () => {
     if (!isValid) return
     console.log(data)
   }
+
   return (
     <div className="container mt-5">
       <div className="row">
@@ -91,4 +92,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginForm
