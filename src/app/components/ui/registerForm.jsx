@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { validator } from '../../utils/validator'
 import TextField from '../common/form/textField'
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [data, setData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
   const isValid = Object.keys(errors).length === 0
@@ -57,32 +57,32 @@ const LoginForm = () => {
   }
 
   return (
-          <form onSubmit={handleSubmit}>
-            <TextField
-              label="Электронная почта"
-              type="text"
-              name="email"
-              value={data.email}
-              onChange={handleChange}
-              error={errors.email}
-            />
-            <TextField
-              label="Пароль"
-              type="password"
-              name="password"
-              value={data.password}
-              onChange={handleChange}
-              error={errors.password}
-            />
-            <button
-              type="submit"
-              disabled={!isValid}
-              className="btn btn-primary w-100 mx-auto mt-3"
-            >
-              Submit
-            </button>
-          </form>
+    <form onSubmit={handleSubmit}>
+      <TextField
+        label="Электронная почта"
+        type="text"
+        name="email"
+        value={data.email}
+        onChange={handleChange}
+        error={errors.email}
+      />
+      <TextField
+        label="Пароль"
+        type="password"
+        name="password"
+        value={data.password}
+        onChange={handleChange}
+        error={errors.password}
+      />
+      <button
+        type="submit"
+        disabled={!isValid}
+        className="btn btn-primary w-100 mx-auto mt-3"
+      >
+        Submit
+      </button>
+    </form>
   )
 }
 
-export default LoginForm
+export default RegisterForm
