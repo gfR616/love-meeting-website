@@ -3,15 +3,24 @@ import { validator } from '../../utils/validator'
 import TextField from '../common/form/textField'
 import api from '../../api'
 import SelectedField from '../common/form/selectField'
+import RadioField from '../common/form/radioField'
+import MultySelectField from '../common/form/multySelectField'
 
 const RegisterForm = () => {
-  const [data, setData] = useState({ email: '', password: '', profession: '' })
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+    profession: '',
+    sex: 'male'
+  })
+  const [qualities, setQualities] = useState({})
   const [errors, setErrors] = useState({})
   const [professions, setProfession] = useState()
   const isValid = Object.keys(errors).length === 0
 
   useEffect(() => {
     api.professions.fetchAll().then((data) => setProfession(data))
+    api.qualities.fetchAll().then((data) => setQualities(data))
   }, [])
 
   const handleChange = ({ target }) => {
@@ -94,6 +103,21 @@ const RegisterForm = () => {
         error={errors.profession}
         value={data.profession}
         label="Выберите вашу профессию:"
+      />
+      <RadioField
+        onChange={handleChange}
+        options={[
+          { name: 'Male', value: 'male' },
+          { name: 'Female', value: 'memale' },
+          { name: 'Other', value: 'other' }
+        ]}
+        name="sex"
+        value={data.sex}
+        label="Выберите ваш пол:"
+      />
+      <MultySelectField
+        onChange={handleChange}
+        options
       />
       <button
         type="submit"
