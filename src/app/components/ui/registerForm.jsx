@@ -11,9 +11,10 @@ const RegisterForm = () => {
     email: '',
     password: '',
     profession: '',
-    sex: 'male'
+    sex: 'male',
+    qualities: []
   })
-  const [, setQualities] = useState({})
+  const [qualities, setQualities] = useState({})
   const [errors, setErrors] = useState({})
   const [professions, setProfession] = useState()
   const isValid = Object.keys(errors).length === 0
@@ -27,11 +28,13 @@ const RegisterForm = () => {
     }
   }, [])
 
-  const handleChange = ({ target }) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value
-    }))
+  const handleChange = ({ name, value }) => {
+    if (name && value) {
+      setData((prevState) => ({
+        ...prevState,
+        [name]: value
+      }))
+    }
   }
 
   useEffect(() => {
@@ -119,7 +122,7 @@ const RegisterForm = () => {
         value={data.sex}
         label="Выберите ваш пол:"
       />
-      <MultySelectField onChange={handleChange} options />
+      <MultySelectField onChange={handleChange} options={qualities} />
       <button
         type="submit"
         disabled={!isValid}
