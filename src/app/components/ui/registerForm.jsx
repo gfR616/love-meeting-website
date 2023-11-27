@@ -13,14 +13,18 @@ const RegisterForm = () => {
     profession: '',
     sex: 'male'
   })
-  const [qualities, setQualities] = useState({})
+  const [, setQualities] = useState({})
   const [errors, setErrors] = useState({})
   const [professions, setProfession] = useState()
   const isValid = Object.keys(errors).length === 0
 
   useEffect(() => {
-    api.professions.fetchAll().then((data) => setProfession(data))
-    api.qualities.fetchAll().then((data) => setQualities(data))
+    if (api.professions && api.professions.fetchAll) {
+      api.professions.fetchAll().then((data) => setProfession(data))
+    }
+    if (api.qualities && api.qualities.fetchAll) {
+      api.qualities.fetchAll().then((data) => setQualities(data))
+    }
   }, [])
 
   const handleChange = ({ target }) => {
@@ -115,10 +119,7 @@ const RegisterForm = () => {
         value={data.sex}
         label="Выберите ваш пол:"
       />
-      <MultySelectField
-        onChange={handleChange}
-        options
-      />
+      <MultySelectField onChange={handleChange} options />
       <button
         type="submit"
         disabled={!isValid}

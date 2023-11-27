@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
+import PropTypes from 'prop-types'
 
 const MultySelectField = ({ options, onChange }) => {
   const optionsArray =
@@ -20,6 +21,10 @@ const MultySelectField = ({ options, onChange }) => {
       onChange={onChange}
     />
   )
+}
+MultySelectField.propTypes = {
+  options: PropTypes.array,
+  onChange: PropTypes.func
 }
 
 export default MultySelectField
