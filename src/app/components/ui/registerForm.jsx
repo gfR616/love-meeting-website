@@ -28,13 +28,12 @@ const RegisterForm = () => {
     }
   }, [])
 
-  const handleChange = ({ name, value }) => {
-    if (name && value) {
-      setData((prevState) => ({
-        ...prevState,
-        [name]: value
-      }))
-    }
+  const handleChange = (target) => {
+    console.log(target)
+    setData((prevState) => ({
+      ...prevState,
+      [target.name]: target.value
+    }))
   }
 
   useEffect(() => {
@@ -115,14 +114,19 @@ const RegisterForm = () => {
         onChange={handleChange}
         options={[
           { name: 'Male', value: 'male' },
-          { name: 'Female', value: 'memale' },
+          { name: 'Female', value: 'female' },
           { name: 'Other', value: 'other' }
         ]}
         name="sex"
         value={data.sex}
         label="Выберите ваш пол:"
       />
-      <MultySelectField onChange={handleChange} options={qualities} />
+      <MultySelectField
+        onChange={handleChange}
+        options={qualities}
+        name="qualities"
+        label="Выберите ваши качества:"
+      />
       <button
         type="submit"
         disabled={!isValid}
