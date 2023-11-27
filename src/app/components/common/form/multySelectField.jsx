@@ -16,6 +16,7 @@ const MultySelectField = ({ options, onChange, name, label }) => {
       : options
 
   const handleChange = (value) => {
+    // eslint-disable-next-line object-shorthand
     onChange({ name: name, value })
   }
 
