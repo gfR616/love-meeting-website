@@ -9,7 +9,6 @@ const LoginForm = () => {
   const isValid = Object.keys(errors).length === 0
 
   const handleChange = (target) => {
-    console.log(target)
     setData((prevState) => ({
       ...prevState,
       [target.name]: target.value

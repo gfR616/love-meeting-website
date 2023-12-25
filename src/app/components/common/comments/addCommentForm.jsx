@@ -18,7 +18,6 @@ const AddCommentForm = ({ onSubmit }) => {
   }
   useEffect(() => {
     API.users.fetchAll().then((data) => {
-      console.log(data)
       setUsers(data)
     })
   }, [])
