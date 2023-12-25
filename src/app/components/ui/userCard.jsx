@@ -13,7 +13,7 @@ const UserCard = ({ user }) => {
     history.push(history.location.pathname + '/edit')
   }
   return (
-    <div className="card mb-3">
+    <div className="card mb-3 mt-3">
       <div className="card-body">
         <button
           className="position-absolute top-0 end-0 btn btn-light btn-sm"
