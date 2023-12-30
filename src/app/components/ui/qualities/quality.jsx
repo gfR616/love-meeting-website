@@ -4,11 +4,8 @@ import useQualities from '../../../hooks/useQualities'
 
 const Quality = ({ id }) => {
   const { getQuality } = useQualities()
-  const quality = getQuality(id)
-  if (!quality) {
-    return null // или возвращайте любой другой компонент или сообщение об ошибке
-  }
-  const { _id, color, name } = quality
+  const { _id, color, name } = getQuality(id)
+
   return (
     <span className={'badge m-1 bg-' + color} key={_id}>
       {name}
