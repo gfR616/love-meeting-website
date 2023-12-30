@@ -20,7 +20,7 @@ const EditUserPage = () => {
     qualities: []
   })
   const [professions, setProfession] = useState([])
-  const [qualities, setQualities] = useState([])
+  const [qualities] = useState([])
   const [errors, setErrors] = useState({})
   const getProfessionById = (id) => {
     for (const prof of professions) {
@@ -77,14 +77,14 @@ const EditUserPage = () => {
       }))
       setProfession(professionsList)
     })
-    api.qualities.fetchAll().then((data) => {
-      const qualitiesList = Object.keys(data).map((optionName) => ({
-        value: data[optionName]._id,
-        label: data[optionName].name,
-        color: data[optionName].color
-      }))
-      setQualities(qualitiesList)
-    })
+    // api.qualities.fetchAll().then((data) => {
+    //   const qualitiesList = Object.keys(data).map((optionName) => ({
+    //     value: data[optionName]._id,
+    //     label: data[optionName].name,
+    //     color: data[optionName].color
+    //   }))
+    //   setQualities(qualitiesList)
+    // })
   }, [])
   useEffect(() => {
     if (data._id) setIsLoading(false)
