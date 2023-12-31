@@ -1,31 +1,31 @@
 const qualities = {
   tedious: {
-    _id: '67rdca3eeb7f6fgeed471198',
+    _id: '658f0e4c597330a88fe6fa5c',
     name: 'Нудила',
     color: 'primary'
   },
   strange: {
-    _id: '67rdca3eeb7f6fgeed471100',
+    _id: '658f0e4c597330a88fe6fa5e',
     name: 'Странный',
     color: 'secondary'
   },
   buller: {
-    _id: '67rdca3eeb7f6fgeed4711012',
+    _id: '658f0e4c597330a88fe6fa60',
     name: 'Троль',
     color: 'success'
   },
   alcoholic: {
-    _id: '67rdca3eeb7f6fgeed471101',
+    _id: '658f0e4c597330a88fe6fa62',
     name: 'Алкоголик',
     color: 'danger'
   },
   handsome: {
-    _id: '67rdca3eeb7f6fgeed471102',
+    _id: '658f0e4c597330a88fe6fa64',
     name: 'Красавчик',
     color: 'info'
   },
   uncertain: {
-    _id: '67rdca3eeb7f6fgeed471103',
+    _id: '658f0e4c597330a88fe6fa66',
     name: 'Неуверенный',
     color: 'dark'
   }

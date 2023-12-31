@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
-import qualityService from '../services/quality.service'
 import { toast } from 'react-toastify'
 import PropTypes from 'prop-types'
+import qualityService from '../services/quality.service'
 
 const QualitiesContext = React.createContext()
 
 export const useQualities = () => {
   return useContext(QualitiesContext)
 }
+
 export const QualitiesProvider = ({ children }) => {
   const [qualities, setQualities] = useState([])
   const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     const getQualities = async () => {
@@ -19,30 +20,29 @@ export const QualitiesProvider = ({ children }) => {
         const { content } = await qualityService.fetchAll()
         console.log('юз кволитис:', content)
         setQualities(content)
-        setIsLoading(false)
+        setLoading(false)
       } catch (error) {
         errorCatcher(error)
       }
     }
     getQualities()
   }, [])
-
-  function errorCatcher(error) {
-    const { message } = error.response.data
-    setError(message)
+  const getQuality = (id) => {
+    const quality = qualities.find((q) => q._id === id)
+    console.log('getQuality:', id, quality)
+    return quality
   }
 
+  function errorCatcher(error) {
+    const message = error.response?.data?.message
+    setError(message)
+  }
   useEffect(() => {
     if (error !== null) {
       toast(error)
       setError(null)
     }
   }, [error])
-
-  const getQuality = (id) => {
-    console.log('getQuality', id)
-    return qualities.find((q) => q._id === id)
-  }
 
   return (
     <QualitiesContext.Provider
@@ -63,5 +63,3 @@ QualitiesProvider.propTypes = {
     PropTypes.node
   ])
 }
-
-export default useQualities
